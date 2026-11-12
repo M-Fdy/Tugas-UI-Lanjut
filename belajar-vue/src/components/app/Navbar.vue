@@ -15,12 +15,12 @@ const menus = [
       {
         name: 'Event List',
         path: '/browse/events',
-        children: [{ name: 'Event Detail (Sample)', path: '/browse/events/1' }],
       },
       { name: 'Category', path: '/browse/category' },
+      { name: 'Your Events', path: '/browse/your-events' },
     ],
   },
-  { name: 'Contact', path: '/contact' },
+  { name: 'Contact', path: '/contact' },{ name: 'Organizer Dashboard', path: '/dashboard' },
 ]
 
 const handleScroll = () => {
@@ -188,6 +188,7 @@ onUnmounted(() => {
   z-index: 999;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
+
 .navbar-container {
   display: flex;
   align-items: center;
@@ -197,12 +198,14 @@ onUnmounted(() => {
   margin: 0 auto;
   padding: 0.85rem 2rem;
 }
+
 .navbar.scrolled {
   background: rgba(28, 25, 72, 0.9);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
+
 .logo {
   display: flex;
   align-items: center;
@@ -226,6 +229,7 @@ onUnmounted(() => {
   font-weight: 700;
   letter-spacing: -0.01em;
 }
+
 .nav-menu {
   display: flex;
   align-items: center;
@@ -236,6 +240,7 @@ onUnmounted(() => {
   flex: 1;
   justify-content: center;
 }
+
 .nav-item {
   position: relative;
   display: flex;
@@ -243,6 +248,7 @@ onUnmounted(() => {
   height: 100%;
   padding: 1rem 0; /* Memberi ruang hover */
 }
+
 .nav-link {
   display: flex;
   align-items: center;
@@ -255,6 +261,7 @@ onUnmounted(() => {
   border-radius: 10px;
   transition: all 0.3s ease;
 }
+
 .nav-link.active {
   background-color: var(--primary, #6644ff);
   font-weight: 600;
@@ -268,6 +275,7 @@ onUnmounted(() => {
   background-color: rgba(255, 255, 255, 0.1);
   transform: translateY(-2px);
 }
+
 .dropdown-indicator {
   transition: transform 0.3s ease;
 }
@@ -276,15 +284,16 @@ onUnmounted(() => {
 }
 
 /* ==================================
-DROPDOWN & SUBMENU STYLES
-Inspired by user reference image
-================================== */
+   DROPDOWN & SUBMENU STYLES
+   Inspired by user reference image
+   ================================== */
 .dropdown-menu {
-  display: none;
+  display: none; /* diubah jadi block saat hover */
   position: absolute;
   top: 100%;
   left: 0;
-  background-color: #d8d8d8;
+
+  background-color: #d8d8d8; /* warna abu seperti referensi */
   min-width: 200px;
   list-style: none;
   padding: 0;
@@ -292,31 +301,42 @@ Inspired by user reference image
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
 }
+
+/* Tampilkan dropdown level 1 saat nav-item di-hover */
 .nav-item:hover .dropdown-menu {
   display: block;
   animation: fadeIn 0.2s ease-out;
 }
+
 .dropdown-item {
-  position: relative;
+  position: relative; /* relative untuk submenu absolut */
 }
+
 .dropdown-link {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 12px 20px;
   text-decoration: none;
-  color: #333;
+  color: #333; /* text gelap */
   font-size: 0.95rem;
-  transition: background-color 0.2s, color 0.2s;
+  transition:
+    background-color 0.2s,
+    color 0.2s;
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
+
 .dropdown-link:hover {
-  background-color: #c4c4c4;
+  background-color: #c4c4c4; /* efek hover lebih gelap sedikit */
   color: #000;
 }
+
+/* Hilangkan border bawah pada item terakhir */
 .dropdown-item:last-child .dropdown-link {
   border-bottom: none;
 }
+
+/* Submenu (Level 2) */
 .submenu {
   display: none;
   position: absolute;
@@ -330,10 +350,13 @@ Inspired by user reference image
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
 }
+
+/* Tampilkan submenu level 2 saat dropdown-item di-hover */
 .dropdown-item:hover .submenu {
   display: block;
   animation: fadeIn 0.2s ease-out;
 }
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -345,9 +368,13 @@ Inspired by user reference image
   }
 }
 
+/* Submenu pada parent (jika left:100% terlalu mentok layar)
+   Kita bisa membiarkannya default left 100%.
+*/
+
 /* ==================================
-RIGHT SECTION
-================================== */
+   RIGHT SECTION
+   ================================== */
 .nav-right {
   display: flex;
   align-items: center;
@@ -375,6 +402,7 @@ RIGHT SECTION
   transition: transform 0.3s ease;
   margin-top: 2px;
 }
+
 .hamburger-btn {
   display: flex;
   align-items: center;
